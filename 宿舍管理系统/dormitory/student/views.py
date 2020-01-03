@@ -149,29 +149,25 @@ def LoginDescribe(func):
             return func(request, *args, **kwargs)
         else:
             return HttpResponseRedirect('/student/login/')
-
     return inner
 
 
 # ---------------------------------------------首页
 @LoginDescribe
 def index(request):
+    student_id = request.COOKIES.get('student_id')
+    name = Stu.objects.filter(student_id=student_id).first().name
     return render(request, 'index.html', locals())
 
 
-# -----------------------------基础页git
-@LoginDescribe
-def base(request):
-    student_id = request.COOKIES.get('student_id')
-    stu = Stu.objects.filter(student_id=student_id).first()
-    name = stu.name
-    return render(request, 'base.html', locals())
+
 
 
 # ----------------------------------------修改个人密码
 @LoginDescribe
 def update_password(request):
     student_id = request.COOKIES.get('student_id')
+    name = Stu.objects.filter(student_id=student_id).first().name
     content = '提示信息：无'
     if request.method == 'POST':
         old_password = request.POST.get('old_password')
