@@ -1,6 +1,7 @@
 import smtplib
 import hashlib
 import random
+import time
 from email.mime.text import MIMEText
 from email.header import Header
 
@@ -149,6 +150,7 @@ def LoginDescribe(func):
             return func(request, *args, **kwargs)
         else:
             return HttpResponseRedirect('/student/login/')
+
     return inner
 
 
@@ -160,15 +162,12 @@ def index(request):
     return render(request, 'index.html', locals())
 
 
-
-
-
 # ----------------------------------------修改个人密码
 @LoginDescribe
 def update_password(request):
     student_id = request.COOKIES.get('student_id')
     name = Stu.objects.filter(student_id=student_id).first().name
-    content = '提示信息：无'
+    content = '提示信息：你正在修改个人密码...'
     if request.method == 'POST':
         old_password = request.POST.get('old_password')
         new_password1 = request.POST.get('new_password1')
@@ -196,3 +195,26 @@ def update_password(request):
         else:
             content = '提示信息:请填写完整以后再发送...'
     return render(request, 'upadate_password.html', locals())
+
+
+# --------------------------------个人中心页面
+def user_info(request):
+    student_id = request.COOKIES.get('student_id')
+    user = Stu.objects.filter(student_id=student_id).first()
+    name = user.name
+    phone = user.phone
+    email = user.email
+    major_class = user.major_class
+    birthday = user.birthday
+    location = user.location
+    remarks = user.remarks
+    if request.method == 'POST':
+        user.name = request.POST.get('name')
+        user.phone = request.POST.get('phone')
+        user.major_class = request.POST.get('major_class')
+        user.birthday = request.POST.get('birthday')
+        user.location = request.POST.get('location')
+        user.remarks = request.POST.get('remarks')
+        user.save()
+        return HttpResponseRedirect('/student/user_info/')
+    return render(request, 'user_info.html', locals())

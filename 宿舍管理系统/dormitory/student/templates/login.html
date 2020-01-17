@@ -44,7 +44,7 @@
                                     {% csrf_token %}
                                     <div class="form-group">
                                         <input type="text" class="form-control form-control-user" name="student_id"
-                                               aria-describedby="emailHelp" placeholder="请输入账号...">
+                                               aria-describedby="emailHelp" placeholder="请输入学号...">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control form-control-user" name="password"
@@ -58,7 +58,7 @@
                                     </div>
                                     <input type="submit" value=" 现在进行登陆" class="btn btn-primary btn-user btn-block">
                                     <hr>
-                                    <p style="color: red">
+                                    <p align="center" style="color: red">
                                         {{ content }}
                                     </p>
                                 </form>

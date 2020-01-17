@@ -9,4 +9,5 @@ urlpatterns = [
     path('logout/', views.logout),  # 登出路由
     path('index/', views.index),  # 主页路由
     path('update_password/', views.update_password),  # 更新个人密码页
+    path('user_info/', views.user_info),  # 个人中心页
 ]

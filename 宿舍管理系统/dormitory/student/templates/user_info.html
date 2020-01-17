@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}
+    更新个人信息
+{% endblock %}
+{% block content %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        <table border="1" align="center" cellpadding="10" class="element-ui" >
+            <tr>
+                <th colspan="7" style="background: BurlyWood" style="text-align:center">
+                    修改个人信息
+                </th>
+            </tr>
+
+            <tr>
+                <th style="background: BurlyWood">姓名:</th>
+                <td><input class="input-sm" type="text" name="name" value="{{ name }}"></td>
+                <th style="background: BurlyWood">出生日期:</th>
+                <td><input type="text" name="birthday" value="{{ birthday }}"></td>
+                <th style="background: BurlyWood">国籍:</th>
+                <td>中国</td>
+                <td rowspan="3" width="100">
+                    <img border="0"
+                         src="http://a2.qpic.cn/psb?/V140HpS919MdYh/pzg3zzU**Gw41Fi7T8R9uNFUua5brWbnD3N9Bf8UPKI!/b/dAkBAAAAAAAA&bo=eAB4AAAAAAAFByQ!&rf=viewer_4"/>
+                </td>
+            </tr>
+
+            <tr>
+                <th style="background: BurlyWood">专业:</th>
+                <td><input type="text" name="major_class" value="{{ major_class }}"></td>
+                <th style="background: BurlyWood">地址:</th>
+                <td><input type="text" name="location" value="{{ location }}"></td>
+                <th style="background: BurlyWood">学历:</th>
+                <td>本科</td>
+            </tr>
+
+            <tr>
+
+                <th style="background: BurlyWood">学校:</th>
+                <td>北京交通大学海滨学院</td>
+                <th style="background: BurlyWood">电话:</th>
+                <td><input type="text" name="phone" value="{{ phone }}"></td>
+                <th style="background: BurlyWood">邮箱:</th>
+                <td>{{ email }}</td>
+            </tr>
+
+
+            <tr>
+                <th height="160" style="background: BurlyWood">备注:</th>
+                <td colspan="6">
+                    <textarea name="remarks" style="width: 800px">
+                        {{ remarks }}
+                    </textarea>
+                </td>
+            </tr>
+
+
+        </table>
+
+        <hr>
+        <input type="submit" value=" 确认更新" class="btn badge-danger  " style="margin-left: 40%;width: 400px">
+    </form>
+
+{% endblock %}
